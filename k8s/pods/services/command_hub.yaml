@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name expose-command-hub
+spec:
+  selector:
+    pod: command_hub
+  ports:
+    - protocol: TCP # do I need to use HTTP here? see if we can send an HTTP request over TCP
+      port: 7000 # incoming port
+      targetPort: 80 # requests sent to port 7000 will go to port 80
