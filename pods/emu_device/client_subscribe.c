@@ -58,9 +58,10 @@ void on_subscribe(struct mosquitto *mosq, void *obj, int mid, int qos_count, con
     }
 }
 
-// this is where the magic happens
+// this is where the magic happens:
+    // get a message
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg)
-{
+{ // perform an action according to the message
     // print the payload
     printf("\n\nTopic: %s\n QoS: %d\n Payload: %s\n\n", msg->topic, msg->qos, (char *)msg->payload);
         // from the struct msg, print the values stored in topic, qos, and payload
@@ -73,9 +74,6 @@ int main(int arc, char *arv[])
     const char hostname[] = "172.0.0.1"; 
     struct mosquitto *mosq;
     int rc;
-
-
-
 
     mosquitto_lib_init();
 

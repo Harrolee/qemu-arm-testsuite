@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from remote_devices import raspberry_pi
+import web_publisher as wp
 
 app = FastAPI()
 
