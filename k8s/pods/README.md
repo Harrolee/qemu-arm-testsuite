@@ -1,6 +1,16 @@
+# Device emulation flow
+   - create an image prepared to emulate the device
+   - place the .hex files meant to run on the devices someplace accessible to the entire cluster 
+      (each .hex contains a different type of test)
+      - can we mount a directory from the user's computer? the .hex files would go there and get picked up by the bash script that begins each an500 emulation
+   - bash script 
+
+
+
+
 # Testing Architecture
 
- - User writes tests in Python
+ - User writes tests in C 
  - They somehow get to a webserver
  - Webserver client publishes tests as messages to the broker as topics
  - broker pushes tests to the devices subscribed to each topic
