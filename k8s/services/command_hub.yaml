@@ -1,11 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name expose-command-hub
+  name: cmdhub-service
 spec:
+  type: LoadBalancer
   selector:
-    pod: command_hub
+    app: cmd-hub
   ports:
-    - protocol: TCP # do I need to use HTTP here? see if we can send an HTTP request over TCP
-      port: 7000 # incoming port
-      targetPort: 80 # requests sent to port 7000 will go to port 80
+    - protocol: TCP
+      port: 80 # incoming port
+      targetPort: 8000 # requests sent to port 80 will go to port 8000
+
+# presently, the entire api can be accessed from within and without the cluster
