@@ -1,9 +1,11 @@
+# grants access to cmdhub from within the cluster
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: cmdhub-service
+  name: cmdhub-np
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: cmd-hub
   ports:
@@ -11,4 +13,4 @@ spec:
       port: 80 # incoming port
       targetPort: 8000 # requests sent to port 80 will go to port 8000
 
-# presently, the entire api can be accessed from within and without the cluster
+

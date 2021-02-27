@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: cmd-hub
-        image: halzinnia/cmd_hub
+        image: halzinnia/cmd_hub:v0.0.0
         ports:
         - containerPort: 8000
 # will eventually add a container for the mosquitto mqtt broker

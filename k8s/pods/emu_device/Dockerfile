@@ -15,7 +15,7 @@ RUN apt-get -y install wget
 RUN # download QEMU: https://www.qemu.org/download/#source
 RUN wget https://download.qemu.org/qemu-${QEMU_VERSION}.tar.xz
 
-RUN # install dependencies
+RUN # install QEMU dependencies
 
 RUN apt-get -y install python build-essential libglib2.0-dev libpixman-1-dev
 

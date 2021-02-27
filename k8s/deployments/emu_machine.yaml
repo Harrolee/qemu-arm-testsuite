@@ -11,15 +11,15 @@ metadata:
 spec:
   replicas: 1
   selector:
-  matchLabels:
-    app: machine-emulator
+    matchLabels:
+      app: machine-emulator
   template:
     metadata:
       labels:
         app: machine-emulator
     spec:
       containers:
-      - name: machine_emulator
+      - name: machine-emulator
         image: halzinnia/machine_emulator:v0.0.0
         ports:
         - containerPort: 1863

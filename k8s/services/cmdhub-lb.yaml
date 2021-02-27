@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cmdhub-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: cmd-hub
+  ports:
+    - protocol: TCP
+      port: 80 # incoming port
+      targetPort: 8000 # requests sent to port 80 will go to port 8000

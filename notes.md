@@ -1,5 +1,15 @@
 # notebook:
 
+
+
+## Feb 27
+
+to do:
+	exec bash into backend
+	check that it can curl the front end
+	learn whether we need a nodeport svc for front end
+
+
 ## Feb 25
 
 constraints: one emulated device
