@@ -1,7 +1,7 @@
 # docs: https://hub.docker.com/r/midnighter/fastapi-base
 
 #--
-# Step 1: Prepare Servers 
+# Step 1: Prepare Server
 #--
 
 # (1/2) FastAPI 
@@ -17,15 +17,15 @@ RUN python3 -m pip install aiofiles
 EXPOSE 8000
 
 RUN mkdir -p /fastapi/code_to_emulate
-RUN chmod 777 /fastapi/code_to_emulate/
+#RUN chmod 777 /fastapi/code_to_emulate/
 RUN echo 'records' > /fastapi/code_to_emulate/apple.txt
 WORKDIR /fastapi
 COPY . .
 
 
 #--
-# Step 2: Start Servers
+# Step 2: Start Server
 #--
 
 
-CMD ["uvicorn", "web_server:app"]
+CMD ["uvicorn", "web_server:app", "--host", "0.0.0.0"]
