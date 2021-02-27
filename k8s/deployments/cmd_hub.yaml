@@ -1,0 +1,25 @@
+# frontend webapp and broker
+
+apiversion: apps/v1
+kind: Deployment
+metadata:
+  name: cmdhub-deployment
+  labels:
+    app: cmd-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cmd-hub
+  template:
+    metadata:
+      labels:
+        app: cmd-hub
+    spec:
+      containers:
+      - name: cmd-hub
+        image: halzinnia/cmd_hub:latest
+        ports:
+        - containerPort: 8000
+# will eventually add a container for the mosquitto mqtt broker
+    

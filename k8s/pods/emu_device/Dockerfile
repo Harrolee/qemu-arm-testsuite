@@ -11,21 +11,21 @@ RUN apt update
 
 WORKDIR /var/qemu
 
-RUN apt -y install wget
+RUN apt-get -y install wget
 RUN # download QEMU: https://www.qemu.org/download/#source
 RUN wget https://download.qemu.org/qemu-${QEMU_VERSION}.tar.xz
 
 RUN # install dependencies
 
-RUN apt -y install python build-essential libglib2.0-dev libpixman-1-dev
+RUN apt-get -y install python build-essential libglib2.0-dev libpixman-1-dev
 
-RUN apt -y install flex bison ninja-build
+RUN apt-get -y install flex bison ninja-build
 
-# verify signature (what does this mean? how does it work?)
-#RUN apt-get -y install gpg
-#RUN wget "https://download.qemu.org/${QEMU_TARBALL}.sig"
-#RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CEACC9E15534EBABB82D3FA03353C9CEF108B584
-#RUN gpg --verify "${QEMU_TARBALL}.sig" "${QEMU_TARBALL}"
+RUN #verify signature (copied key from Dockerpi. Will it work?)
+RUN apt-get -y install gpg
+RUN wget "https://download.qemu.org/qemu-${QEMU_VERSION}.tar.xz.sig"
+RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CEACC9E15534EBABB82D3FA03353C9CEF108B584
+RUN gpg --verify "qemu-${QEMU_VERSION}.tar.xz.sig" "qemu-${QEMU_VERSION}.tar.xz"
 
 RUN # untar, configure, and build QEMU
 RUN tar xvJf qemu-${QEMU_VERSION}.tar.xz
@@ -37,24 +37,21 @@ RUN make -j$(nproc)
 RUN # Strip the binary to reduce size
 RUN strip "arm-softmmu/qemu-system-arm"
 
-
-
 #--
-# Step 3: Load kernel for board and emulate board
+# Step 2: Load entryfile
 #--
 
 # For now, get hex file to run on the emulated mps-an500
-COPY hex/* .
-# maybe later, write a shell script that prompts the user for an image or a kernel or device file
-
+COPY entry.sh .
 
 # send output about machine startup to user's stdout
 
-# expose QEMU monitor so that the user can poke around their running machine
+# expose the port for QEMU monitor so that the user can poke around their running machine
 EXPOSE 7001
 
-RUN ls
+RUN # Launch listener
 
-RUN # launch machine
+CMD ["bash", "entry.sh"]
+
 # after this works, make the copy instruction from earlier copy an entire folder and then direct the file option in devices to the new folder
-RUN ./qemu-system-arm -M mps2-an500 -m 16M -no-reboot -nographic -cpu cortex-m7 -device loader,file=/var/qemu/Blinky.hex -monitor telnet:localhost:1234,server,nowait
+# RUN ./qemu-system-arm -M mps2-an500 -m 16M -no-reboot -nographic -cpu cortex-m7 -device loader,file=/var/qemu/Blinky.hex -monitor telnet:localhost:1234,server,nowait

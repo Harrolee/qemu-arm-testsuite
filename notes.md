@@ -1,5 +1,97 @@
 # notebook:
 
+## Feb 25
+
+constraints: one emulated device
+
+story: user wants to run code on emulated device.
+	User wants to see the gpio output from their code on the emulated device.
+	 -- Later: User wants to see the output under different circumstance 
+	User uploads code
+	GPIO output is returned to user
+		--> displayed as output in CLI
+		--> formatted into a file 
+			--> format can show: 
+				- pin number
+				- time between GPIO outputs
+				- (memory location that prompted output?)
+
+
+### user story:
+
+User wants to run code on an500.
+user launches application.
+	WebApp pod wakes up.
+	QEMU pod wakes up.
+User sends .hex file to WebApp
+	WebApp sends .hex to QEMU pod.
+
+	QEMU pod begins an500 emulation with .hex file
+	events sent to GPIO are formatted into file format
+	file output is returned to User
+User checks output against their expectations, iterates.
+
+	
+
+
+
+### UnMade components:
+
+	[] an500 base image
+	--> what do I need in order to get the .hex file to the machine?
+		WebApp has .hex on local dir
+		an500 curls .hex from the server
+		
+		okay. 
+			[x] [] we need a docker image for the an500 and for the web_app.
+			then, we need to make deployment yamls for each pod
+			then, we need to write service nodeport yamls to give each pod an ip 
+				and make the frontend accessible to the host
+		next:
+			How do we get the ip of the webserver pod?
+
+
+
+	NodePort service
+	GPIO device
+
+
+
+## Networking
+
+frontend pod:	
+	- webserver port:		8000
+		- rest api within it
+		- mosquitto client
+	- mosquitto broker:		1863
+	- xxxx?
+
+machine emulator:
+	- qemu monitor port:	7000
+	- mosquitto client:		1863
+	- xxxx?
+
+database:
+	- port:					????
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Before Feb 23
+
 requirements:
 	- Board needs to talk to a webserver on the network
 	- Board needs to run tests:

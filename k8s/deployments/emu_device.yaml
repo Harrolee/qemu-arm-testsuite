@@ -1,0 +1,26 @@
+# emulated machine
+
+# later, provide a variable number of replicas
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: machine-emulator-deployment
+  labels:
+    app: machine-emulator
+spec:
+  replicas: 1
+  selector:
+  matchLabels:
+    app: machine-emulator
+  template:
+    metadata:
+      labels:
+        app: machine-emulator
+    spec:
+      containers:
+      - name: machine_emulator
+        image: halzinnia/machine_emulator:latest
+        ports:
+        - containerPort: 1863
+# 1863 is the port for mosquitto mqtt client
