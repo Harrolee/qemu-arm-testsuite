@@ -1,8 +1,19 @@
 # notebook:
 
 
+## tasks:
 
-## Feb 27
+Figure out how to curl cmd-hub from the host machine.
+	- you have: 
+		a LoadBalancer k8s service
+			-- external ip is stuck in pending
+				--> consult https://www.qwiklabs.com/focuses/557?parent=catalog
+		an exposed port
+
+Write a nodeport service for cmd-hub deployment
+	Then, emu_machine can curl cmd-hub
+--> you MIGHT not need a service for emu_machine YET
+
 
 to do:
 	exec bash into backend

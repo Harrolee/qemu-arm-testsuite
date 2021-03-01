@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: machine-emulator
-        image: halzinnia/machine_emulator:v0.0.0
+        image: halzinnia/machine_emulator:v0.0.1
         ports:
         - containerPort: 1863
 # 1863 is the port for mosquitto mqtt client
