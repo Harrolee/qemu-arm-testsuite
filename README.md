@@ -4,12 +4,12 @@
 ## two functional versions:
 ### demo:
 The steps required to use this are pretty specific to the mps2-an500. The important part of the demo is this:
-**complied code can be run on an emulated machine within a container**
+**compiled code can be run on an emulated machine within a container**
 
 ### test engine:
 **work in progress**
  - upload code to a front end
- - recieve a file describing the output sent to GPIO pins 
+ - receive a file describing the output sent to GPIO pins 
 
 
 ## versions described below
